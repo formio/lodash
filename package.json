@@ -8,7 +8,8 @@
     "docs": "./node_modules/typedoc/bin/typedoc --exclude '*.spec.ts' src/*.ts src/**/*.ts src/**/**/*.ts",
     "build:webpack": "webpack --config config/webpack.config.js && webpack --config config/webpack.prod.js",
     "build": "tsc && npm run docs && npm run build:webpack",
-    "prepublish": "npm run build && npm run test"
+    "prepublish": "npm run build && npm run test",
+    "updatedocs": "git subtree push --prefix docs origin gh-pages"
   },
   "repository": {
     "type": "git",
