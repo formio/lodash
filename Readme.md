@@ -23,4 +23,4 @@ _.sum([2, 3]);
 ### Implemented methods
 This library is not intended to be a full featured Lodash implementation. It is tiny, and we want it to stay that way, so we have only included the set of methods that are utilized within the Form.io platform. These methods include the following:
 
-[https://formio.github.io/lodash/docs/modules/index.html](https://formio.github.io/lodash/docs/modules/index.html)
+[https://formio.github.io/lodash/modules/index.html](https://formio.github.io/lodash/modules/index.html)
