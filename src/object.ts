@@ -157,7 +157,7 @@ function mergeArray(target: Array<any>, source: Array<any>) {
  export function merge(...args: any) {
     const first = args.shift();
     return args.reduce((target: any, source: any, index: number) => {
-        if (target === source) {
+        if (!target || (target === source)) {
             return cloneDeep(source);
         }
         else if (isArray(source)) {

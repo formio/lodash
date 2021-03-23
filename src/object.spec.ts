@@ -67,6 +67,32 @@ describe('Object', () => {
         assert.deepEqual(_.merge(
             {key: ''},
             {key: 'firstName', label: 'First Name'}
-        ), {key: 'firstName', label: 'First Name'})
+        ), {key: 'firstName', label: 'First Name'});
+        assert.deepEqual(_.merge({
+            "type": "component",
+            "key": "",
+            "persistent": true,
+            "protected": false,
+            "components": []
+          }, {
+            "key": "data",
+            "components": [
+              {
+                "type": "datavalue",
+                "key": "firstName"
+              }
+            ]
+          }), {
+              type: 'component',
+              key: 'data',
+              components: [
+                  {
+                      type: 'datavalue',
+                      key: 'firstName'
+                  }
+              ],
+              persistent: true,
+              protected: false
+          });
     });
 });
