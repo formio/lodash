@@ -64,5 +64,9 @@ describe('Object', () => {
             'a': [{ 'c': 3 }, { 'e': 5 }]
         };
         assert.deepEqual(_.merge(object, other), { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] });
+        assert.deepEqual(_.merge(
+            {key: ''},
+            {key: 'firstName', label: 'First Name'}
+        ), {key: 'firstName', label: 'First Name'})
     });
 });

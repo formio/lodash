@@ -1,4 +1,4 @@
-import { isArray, isObject } from './lang';
+import { isArray, isObject, isPlainObject } from './lang';
 import { each } from './array';
 
 /**
@@ -167,8 +167,11 @@ function mergeArray(target: Array<any>, source: Array<any>) {
             }
             return mergeArray(target, source);
         }
-        else {
+        else if (isPlainObject(source)) {
             return mergeObject(target, source);
+        }
+        else {
+            return cloneDeep(source);
         }
     }, first);
 }
