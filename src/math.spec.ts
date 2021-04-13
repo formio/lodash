@@ -23,4 +23,18 @@ describe('Math', () => {
     it('_.max', () => {
         assert.deepEqual(_.max([2, 4, 6, 10, 8]), 10);
     });
+    it('_.maxBy', () => {
+        assert.deepEqual(_.maxBy([
+            {n: 2}
+        ], 'n'), {n: 2});
+    });
+    it('_.maxBy', () => {
+        assert.deepEqual(_.maxBy([
+            {n: 2},
+            {n: 4},
+            {n: 6},
+            {n: 10},
+            {n: 8}
+        ], 'n'), {n: 10});
+    });
 });

@@ -9,11 +9,24 @@ function mathOp(a: number, op: any, precision: number = 0) {
     return op(a * precision) / precision;
 }
 
-function getBy(arr: any, fn: any, op: any) {
-    arr = clone(arr);
-    const first = arr.shift();
+function getBy(arr: any, fn: any, op: any, resultOp?: any) {
+    const first = arr[0];
+    if (arr.length <= 1) {
+        return first;
+    }
     const fnString = isString(fn);
-    return arr.reduce((current: any, item: any) => op(current, fnString ? get(item, fn) : fn(item)), first);
+    return arr.slice(1).reduce((current: any, item: any) => {
+        const thisItem = fnString ? get(current, fn) : fn(current);
+        const nextItem = fnString ? get(item, fn) : fn(item);
+        const result = op(thisItem, nextItem);
+        return resultOp ? resultOp(result, current, item, nextItem) : result;
+    }, first);
+}
+
+function compareBy(arr: any, fn: any, op: any) {
+    return getBy(arr, fn, op, (result: any, current: any, next: any, nextValue: any) => {
+        return (result === nextValue) ? next : current;
+    })
 }
 
 /**
@@ -69,7 +82,7 @@ export function max(arr: any) {
  * @link https://lodash.com/docs/4.17.15#maxBy
  */
 export function maxBy(arr: any, fn: any) {
-    return getBy(arr, fn, Math.max);
+    return compareBy(arr, fn, Math.max);
 }
 
 /**
@@ -107,7 +120,7 @@ export function min(arr: any) {
  * @returns
  */
 export function minBy(arr: any, fn: any) {
-    return getBy(arr, fn, Math.min);
+    return compareBy(arr, fn, Math.min);
 }
 
 /**
