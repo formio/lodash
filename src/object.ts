@@ -192,6 +192,19 @@ export function fastCloneDeep(obj: any) {
 }
 
 /**
+ * Performs a shallow clone of an object.
+ * @param src
+ */
+export function clone(src: any) {
+    if (Array.isArray(src)) { // for arrays
+        return [...src];
+    }
+    else {
+        return {...src};
+    }
+}
+
+/**
  * Performs a recursive cloneDeep operation.
  * @param src
  * @returns

@@ -1,5 +1,5 @@
 import { isString } from './lang';
-import { get } from './object';
+import { get, clone } from './object';
 
 function mathOp(a: number, op: any, precision: number = 0) {
     if (!precision) {
@@ -10,6 +10,7 @@ function mathOp(a: number, op: any, precision: number = 0) {
 }
 
 function getBy(arr: any, fn: any, op: any) {
+    arr = clone(arr);
     const first = arr.shift();
     const fnString = isString(fn);
     return arr.reduce((current: any, item: any) => op(current, fnString ? get(item, fn) : fn(item)), first);

@@ -53,6 +53,11 @@ export declare function merge(...args: any): any;
  */
 export declare function fastCloneDeep(obj: any): any;
 /**
+ * Performs a shallow clone of an object.
+ * @param src
+ */
+export declare function clone(src: any): any;
+/**
  * Performs a recursive cloneDeep operation.
  * @param src
  * @returns
