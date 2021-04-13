@@ -1,5 +1,5 @@
-import { isString } from './lang';
-import { get, clone } from './object';
+import { isString, } from './lang';
+import { get } from './object';
 
 function mathOp(a: number, op: any, precision: number = 0) {
     if (!precision) {
@@ -9,24 +9,27 @@ function mathOp(a: number, op: any, precision: number = 0) {
     return op(a * precision) / precision;
 }
 
-function getBy(arr: any, fn: any, op: any, resultOp?: any) {
+function compareBy(arr: any, fn: any, op: any) {
     const first = arr[0];
     if (arr.length <= 1) {
         return first;
     }
     const fnString = isString(fn);
-    return arr.slice(1).reduce((current: any, item: any) => {
-        const thisItem = fnString ? get(current, fn) : fn(current);
-        const nextItem = fnString ? get(item, fn) : fn(item);
-        const result = op(thisItem, nextItem);
-        return resultOp ? resultOp(result, current, item, nextItem) : result;
+    return arr.slice(1).reduce((current: any, next: any) => {
+        const currentValue = fnString ? get(current, fn) : fn(current);
+        const nextValue = fnString ? get(next, fn) : fn(next);
+        const result = op(currentValue, nextValue);
+        return (result === nextValue) ? next : current;
     }, first);
 }
 
-function compareBy(arr: any, fn: any, op: any) {
-    return getBy(arr, fn, op, (result: any, current: any, next: any, nextValue: any) => {
-        return (result === nextValue) ? next : current;
-    })
+function valueBy(arr: any, fn: any, op: any) {
+    const first = arr[0];
+    if (arr.length <= 1) {
+        return first;
+    }
+    const fnString = isString(fn);
+    return arr.slice(1).reduce((current: any, next: any) => op(current, fnString ? get(next, fn) : fn(next)), fnString ? get(first, fn) : fn(first));
 }
 
 /**
@@ -179,5 +182,5 @@ export function sum(arr: any) {
  * @returns
  */
 export function sumBy(arr: any, fn: any) {
-    return getBy(arr, fn, (a: number, b: number) => (a + b));
+    return valueBy(arr, fn, (a: number, b: number) => (a + b));
 }

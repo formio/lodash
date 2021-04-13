@@ -1,6 +1,6 @@
 {
   "name": "@formio/lodash",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A minimalistic reduced-set implementation of the Lodash library.",
   "main": "lib/index.js",
   "scripts": {
