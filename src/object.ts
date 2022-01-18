@@ -185,7 +185,7 @@ export function fastCloneDeep(obj: any) {
     try {
         return JSON.parse(JSON.stringify(obj));
     }
-    catch (err) {
+    catch (err: any) {
         console.log(`Clone Failed: ${err.message}`);
         return null;
     }
