@@ -86,7 +86,7 @@ eval("\nvar __assign = (this && this.__assign) || function () {\n    __assign = 
   \***********************/
 /***/ (function(__unused_webpack_module, exports) {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.endsWith = exports.trim = void 0;\n// From https://youmightnotneed.com/lodash/#trim\nfunction trim(str, c) {\n    if (c === void 0) { c = '\\\\s'; }\n    return str.replace(new RegExp(\"^([\".concat(c, \"]*)(.*?)([\").concat(c, \"]*)$\")), '$2');\n}\nexports.trim = trim;\n// From https://youmightnotneed.com/lodash/#endsWith\nfunction endsWith(str, c) {\n    return str.endsWith(c);\n}\nexports.endsWith = endsWith;\n\n\n//# sourceURL=webpack://_/./lib/string.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.endsWith = exports.trim = void 0;\n// From https://youmightnotneed.com/lodash/#trim\nfunction trim(str, c) {\n    if (c === void 0) { c = '\\\\s'; }\n    return str.replace(new RegExp(\"^([\".concat(c, \"]*)(.*?)([\").concat(c, \"]*)$\")), '$2');\n}\nexports.trim = trim;\n// Polyfill from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith\nif (!String.prototype.endsWith) {\n    String.prototype.endsWith = function (search, this_len) {\n        if (this_len === undefined || this_len > this.length) {\n            this_len = this.length;\n        }\n        // @ts-ignore: Object is possibly 'undefined'\n        return this.substring(this_len - search.length, this_len) === search;\n    };\n}\n// From https://youmightnotneed.com/lodash/#endsWith\nfunction endsWith(str, c) {\n    return str.endsWith(c);\n}\nexports.endsWith = endsWith;\n\n\n//# sourceURL=webpack://_/./lib/string.js?");
 
 /***/ })
 
