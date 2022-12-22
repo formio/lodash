@@ -8,7 +8,7 @@ export declare function keys(obj: any): string[];
  * @param obj
  * @returns
  */
-export declare function values(obj: any): any;
+export declare function values(obj: any): unknown[];
 /**
  * Retrieve the path parts provided a path string.
  * @param path
