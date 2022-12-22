@@ -31,7 +31,8 @@ export function isEqual(a: any, b: any): boolean {
     if (a === b) {
         return true;
     }
-    if (a && b && (Array.isArray(a) || isObject(a))) {
+    if (a && b && (Array.isArray(a) || isObject(a)) && Object.keys(a).length === Object.keys(b).length) {
+        
         equal = true;
         each(a, (val: any, key: any) => {
             if ((Array.isArray(val) || isObject(val)) && !isEqual(b[key], val)) {
