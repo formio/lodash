@@ -2,15 +2,10 @@ import { assert } from 'chai';
 import * as _ from './index';
 
 describe('Lang', () => {
-    it('debug', () => {
-        console.log(_.isEqual([1, 2,], 123));
-    });
-
     it('_.isEqual', () => {
         assert.isOk(_.isEqual(1, 1));
         assert.isOk(_.isEqual({a: 1}, {a: 1}));
         assert.isNotOk(_.isEqual({a: 1}, {a: 2}));
-        // assert.isNotOk()
         assert.isNotOk(_.isEqual({a: 1}, {a: 1, b: 2}));
         assert.isNotOk(_.isEqual([1, 2], [1, 2, 3]));
     });
