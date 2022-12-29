@@ -91,9 +91,6 @@ export function isPlainObject(value: any): boolean {
     if (!isObjectLike(value) || getTag(value) != '[object Object]') {
         return false
     }
-    if (Object.values(value).some(isObject)) {
-        return false;
-    }
     if (Object.getPrototypeOf(value) === null) {
         return true
     }

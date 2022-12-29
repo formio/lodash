@@ -66,7 +66,8 @@ describe('Lang', () => {
 
     it('_.isPlainObject', () => {
         assert.isOk(_.isPlainObject({a: 1}));
-        assert.isNotOk(_.isPlainObject({a: {b: 1}}));
+        assert.isOk(_.isPlainObject({a: {b: 1}}));
+        assert.isNotOk(_.isPlainObject([]));
     });
 
     it('_.isNumber', () => {
