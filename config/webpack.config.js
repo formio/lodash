@@ -1,7 +1,7 @@
 const path = require('path');
 module.exports = {
   mode: 'development',
-  entry: `./lib/index.js`,
+  entry: `./lib/cjs/index.js`,
   output: {
     library: '_',
     libraryTarget: 'umd',

@@ -1,13 +1,20 @@
 {
   "name": "@formio/lodash",
-  "version": "0.1.0",
+  "version": "1.0.0-rc.1",
   "description": "A minimalistic reduced-set implementation of the Lodash library.",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/mjs/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
   "scripts": {
     "test": "mocha -r ts-node/register '**/*.spec.ts'",
     "docs": "./node_modules/typedoc/bin/typedoc --exclude '*.spec.ts' src/*.ts src/**/*.ts src/**/**/*.ts",
-    "build:webpack": "webpack --config config/webpack.config.js && webpack --config config/webpack.prod.js",
-    "build": "tsc && npm run docs && npm run build:webpack",
+    "build:webpack": "rm -rf dist && webpack --config config/webpack.config.js && webpack --config config/webpack.prod.js",
+    "build": "rm -rf lib && tsc --project tsconfig.cjs.json && tsc --project tsconfig.mjs.json && npm run docs && npm run build:webpack",
     "prepublish": "npm run build && npm run test",
     "updatedocs": "git subtree push --prefix docs origin gh-pages"
   },
