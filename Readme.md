@@ -1,4 +1,7 @@
 ## @formio/lodash
+### Important Note: This library has been deprecated.
+With our recent innovations with our 5.x @formio/js renderer, including the refactoring of the build process, this library is no longer needed. The "tree-shaking" ability of modern build engines has the ability to remove superfluous code from builds which now makes the purpopse of this library no longer needed. As of 5.x @formio/js renderer and 2.x @formio/core libraries, this library will no longer be needed.
+
 This library is a tiny (3kb gzipped) reduced-set implementation of the Lodash library.
 
 ### Usage
